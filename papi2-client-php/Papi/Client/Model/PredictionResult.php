@@ -29,7 +29,7 @@ class PredictionResult
     {
         $prediction = new PredictionResult();
         $prediction->_uid = $predictionArray["uid"];
-        $prediction->_inputUsed = $predictionArray["input_used"];
+        //$prediction->_inputUsed = $predictionArray["input_used"];
         $prediction->_predictions = self::_createTraits($predictionArray["predictions"]);
         return $prediction;
     }
