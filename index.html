@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.1.min.js"></script>
     <title>HRB</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
 
         <label class="col-sm-offset-2 h3 control-label text-center">Poll</label>
 
-        <form class="form-horizontal" role="form">
+        <form id="form" class="form-horizontal" role="form">
 
             <!--age-->
             <div class="form-group">
@@ -155,6 +156,95 @@
     </div>
 
 </div>
+
+
+<script>
+
+    var age;
+    var gender;
+    var religion;
+    var politics;
+    var relationship;
+
+    var json_obj;
+
+
+    $( "#form" ).submit(function( event ) {
+
+        event.preventDefault();
+
+        age = $("#inputAge").val();
+
+        //gender
+        if( $("#cb_female").is(":checked")){
+            gender = "female";
+        }
+        else if( $("#cb_male").is(":checked")){
+            gender = "male";
+        }
+
+
+        //religion
+        if( $("#cb_none").is(":checked")){
+            religion = "none";
+        }
+        else if( $("#cb_christian_other").is(":checked")){
+            religion = "christian_other";
+        }
+        else if( $("#cb_catholic").is(":checked")){
+            religion = "catholic";
+        }
+        else if( $("#cb_jewish").is(":checked")){
+            religion = "jewish";
+        }
+        else if( $("#cb_lutheran").is(":checked")){
+            religion = "lutheran";
+        }
+        else if( $("#cb_mormon").is(":checked")){
+            religion = "mormon";
+        }
+
+        //politics
+        if( $("#cb_conservative").is(":checked")){
+            politics = "conservative";
+        }
+        else if( $("#cb_liberal").is(":checked")){
+            politics = "liberal";
+        }
+        else if( $("#cb_uninvolved").is(":checked")){
+            politics = "uninvolved";
+        }
+        else if( $("#cb_libertanian").is(":checked")){
+            politics = "libertanian";
+        }
+
+        //relationship
+        if( $("#cb_yes").is(":checked")){
+            relationship = "yes";
+        }
+        else if( $("#cb_no").is(":checked")){
+            relationship = "no";
+        }
+
+        json_obj = {"age": age ,"gender": gender ,"religion": religion, "politics": politics, "relationship":relationship };
+
+        json_obj_final = {"uid": "12345" ,"user_likes": ["12","13","14"], "user_poll_answers": json_obj};
+
+        var request = $.ajax({
+            type: "POST",
+            url: "http://192.168.0.12/finkihrb/parseUserData.php",
+            data: {data: json_obj_final},
+            dataType: "json"
+        });
+
+        request.fail(function( jqXHR, textStatus ) {
+            alert( "fail " + textStatus);
+        });
+
+    });
+
+</script>
+
 
 
 </body>
