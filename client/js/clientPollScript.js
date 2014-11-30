@@ -11,7 +11,7 @@ var relationship;
 var json_obj;
 var json_obj_final;
 
-var urlHRB = "http://192.168.0.12/finkihrb/parseUserData.php";
+var urlHRB = "http://www.finkihrb.zor-komerc.mk/server/parseUserData.php";
 
 $( document ).ready(function() {
 
