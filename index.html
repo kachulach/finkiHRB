@@ -147,20 +147,14 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
-
-
-
         </form>
-
-
-
     </div>
-
 </div>
 
 
 <script>
-
+	//TODO
+		//new script file
     var age;
     var gender;
     var religion;
@@ -229,18 +223,27 @@
 
         json_obj = {"age": age ,"gender": gender ,"religion": religion, "politics": politics, "relationship":relationship };
 
-        json_obj_final = {"uid": "test132","user_likes":["aaa","bbb","ccc"], "user_poll_answers": json_obj};
+		//testing
+			var random_uid="test"+Math.floor(Math.random()*1233546)+"aaa";
+			
+        json_obj_final = {"uid": random_uid,"user_likes":["aaa","bbb","ccc"], "user_poll_answers": json_obj};
 
-		console.log(json_obj_final);
         var request = $.ajax({
             type: "POST",
             url: "http://192.168.0.12/finkihrb/parseUserData.php",
             data:{data: json_obj_final}
         });
-
         request.fail(function( jqXHR, textStatus ) {
             alert( "fail " + textStatus);
+				//TODO
+					//say something went wrong
         });
+		request.success(function(){
+			alert("success");
+			//TODO
+				//clear fields
+				//show modal to say thank you
+		});
 
     });
 
