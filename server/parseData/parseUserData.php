@@ -1,24 +1,31 @@
 <?php 
+include 'konekcija.php';
+	
+	header("Access-Control-Allow-Origin: *");
+ 
+	if (isset($_POST["data"])) {
+		$json=$_POST["data"];
+		$uid=$json["uid"];
+		$user_likes=$json["user_likes"];
+		$user_poll_answers=$json["user_poll_answers"];
+		insertUserData($uid, $user_poll_answers);
+	}
 
-	if (isset($_POST["uid"])) {
-		print("User id: ". $_POST["uid"]);
-	} else {
-		print("User id is not set");
+	function insertUserData ($uid,$user_poll_answers) {
+		$age=$user_poll_answers["age"];
+		$gender=$user_poll_answers["gender"];
+		$religion=$user_poll_answers["religion"];
+		$politics=$user_poll_answers["politics"];
+		$relationship=$user_poll_answers["relationship"];
+		
+		global $connection; 		
+		$str="INSERT INTO userdata (uid,poll_age,poll_gender,poll_politics,poll_relationship,poll_religion) 
+												VALUES ('$uid',$age,'$gender','$politics','$relationship','$religion')";												
+		mysqli_query($connection,$str);
+		mysqli_close($connection);
 	}
 
 
-	if (isset($_POST["user_likes"])) {
-		print("user likes: ". $_POST["user_likes"]);
-	} else {
-		print("user_likes is not set");
-	}
-
-
-	if (isset($_POST["user_poll_answers"])) {
-		print("user_poll_answers: ". $_POST["user_poll_answers"]);
-	} else {
-		print("user_poll_answers is not set");
-	}
 
 
 
