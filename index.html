@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/clientPollScript.js"></script>
     <title>HRB</title>
 </head>
 <body>
@@ -17,7 +18,6 @@
         </div>
 
     </div>
-
     
     <div class="row">
 
@@ -30,7 +30,7 @@
 
                 <label for="inputAge" class="col-sm-2 control-label">Age</label>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control" id="inputAge" placeholder="Age">
+                    <input type="text" class="form-control" id="inputAge" placeholder="Age" required>
                 </div>
 
             </div>
@@ -39,15 +39,13 @@
             <div class="form-group">
 
                 <label for="inputGender" class="col-sm-2 control-label">Gender</label>
-                <div id="inputGender" class="col-sm-6">
-                    <div class="checkbox">
+                <div  class="col-sm-6">
+                    <div id="inputGender" class="radio" >
                         <label>
-                            <input id="cb_female" type="checkbox"> Female
+                            <input id="cb_female" type="radio" name="gender"> Female
                         </label>
-                    </div>
-                    <div class="checkbox">
                         <label>
-                            <input id="cb_male" type="checkbox"> Male
+                            <input id="cb_male" type="radio" name="gender"> Male
                         </label>
                     </div>
                 </div>
@@ -59,34 +57,24 @@
 
                 <label for="inputReligion" class="col-sm-2 control-label">Religion</label>
                 <div id="inputReligion" class="col-sm-6">
-                    <div class="checkbox">
+                    <div class="radio">
                         <label>
-                            <input id="cb_none" type="checkbox"> None
+                            <input id="cb_none" type="radio" name="religion"> None
                         </label>
-                    </div>
-                    <div class="checkbox">
                         <label>
-                            <input id="cb_christian_other" type="checkbox"> Christian other
+                            <input id="cb_christian_other" type="radio" name="religion"> Christian other
                         </label>
-                    </div>
-                    <div class="checkbox">
                         <label>
-                            <input id="cb_catholic" type="checkbox"> Catholic
+                            <input id="cb_catholic" type="radio" name="religion"> Catholic
                         </label>
-                    </div>
-                    <div class="checkbox">
                         <label>
-                            <input id="cb_jewish" type="checkbox"> Jewish
+                            <input id="cb_jewish" type="radio" name="religion"> Jewish
                         </label>
-                    </div>
-                    <div class="checkbox">
                         <label>
-                            <input id="cb_lutheran" type="checkbox"> Lutheran
+                            <input id="cb_lutheran" type="radio" name="religion"> Lutheran
                         </label>
-                    </div>
-                    <div class="checkbox">
                         <label>
-                            <input id="cb_mormon" type="checkbox"> Mormon
+                            <input id="cb_mormon" type="radio" name="religion"> Mormon
                         </label>
                     </div>
                 </div>
@@ -98,24 +86,18 @@
 
                 <label for="inputPolitics" class="col-sm-2 control-label">Politics</label>
                 <div id="inputPolitics" class="col-sm-6">
-                    <div class="checkbox">
+                    <div class="radio">
                         <label>
-                            <input id="cb_conservative" type="checkbox"> Conservative
+                            <input id="cb_conservative" type="radio" name="politics"> Conservative
                         </label>
-                    </div>
-                    <div class="checkbox">
                         <label>
-                            <input id="cb_liberal" type="checkbox"> Liberal
+                            <input id="cb_liberal" type="radio" name="politics"> Liberal
                         </label>
-                    </div>
-                    <div class="checkbox">
                         <label>
-                            <input id="cb_uninvolved" type="checkbox"> Uninvolved
+                            <input id="cb_uninvolved" type="radio" name="politics"> Uninvolved
                         </label>
-                    </div>
-                    <div class="checkbox">
                         <label>
-                            <input id="cb_libertanian" type="checkbox"> Libertanian
+                            <input id="cb_libertanian" type="radio" name="politics"> Libertanian
                         </label>
                     </div>
                 </div>
@@ -127,14 +109,12 @@
 
                 <label for="inputRelationship" class="col-sm-2 control-label">Relationship</label>
                 <div id="inputRelationship" class="col-sm-6">
-                    <div class="checkbox">
+                    <div class="radio">
                         <label>
-                            <input id="cb_yes" type="checkbox"> Yes
+                            <input id="cb_yes" type="radio" name="relationship"> Yes
                         </label>
-                    </div>
-                    <div class="checkbox">
                         <label>
-                            <input id="cb_no" type="checkbox"> No
+                            <input id="cb_no" type="radio" name="relationship"> No
                         </label>
                     </div>
                 </div>
@@ -150,105 +130,6 @@
         </form>
     </div>
 </div>
-
-
-<script>
-	//TODO
-		//new script file
-    var age;
-    var gender;
-    var religion;
-    var politics;
-    var relationship;
-
-    var json_obj;
-
-
-    $( "#form" ).submit(function( event ) {
-
-        event.preventDefault();
-
-        age = $("#inputAge").val();
-
-        //gender
-        if( $("#cb_female").is(":checked")){
-            gender = "female";
-        }
-        else if( $("#cb_male").is(":checked")){
-            gender = "male";
-        }
-
-
-        //religion
-        if( $("#cb_none").is(":checked")){
-            religion = "none";
-        }
-        else if( $("#cb_christian_other").is(":checked")){
-            religion = "christian_other";
-        }
-        else if( $("#cb_catholic").is(":checked")){
-            religion = "catholic";
-        }
-        else if( $("#cb_jewish").is(":checked")){
-            religion = "jewish";
-        }
-        else if( $("#cb_lutheran").is(":checked")){
-            religion = "lutheran";
-        }
-        else if( $("#cb_mormon").is(":checked")){
-            religion = "mormon";
-        }
-
-        //politics
-        if( $("#cb_conservative").is(":checked")){
-            politics = "conservative";
-        }
-        else if( $("#cb_liberal").is(":checked")){
-            politics = "liberal";
-        }
-        else if( $("#cb_uninvolved").is(":checked")){
-            politics = "uninvolved";
-        }
-        else if( $("#cb_libertanian").is(":checked")){
-            politics = "libertanian";
-        }
-
-        //relationship
-        if( $("#cb_yes").is(":checked")){
-            relationship = "yes";
-        }
-        else if( $("#cb_no").is(":checked")){
-            relationship = "no";
-        }
-
-        json_obj = {"age": age ,"gender": gender ,"religion": religion, "politics": politics, "relationship":relationship };
-
-		//testing
-			var random_uid="test"+Math.floor(Math.random()*1233546)+"aaa";
-			
-        json_obj_final = {"uid": random_uid,"user_likes":["aaa","bbb","ccc"], "user_poll_answers": json_obj};
-
-        var request = $.ajax({
-            type: "POST",
-            url: "http://192.168.0.12/finkihrb/parseUserData.php",
-            data:{data: json_obj_final}
-        });
-        request.fail(function( jqXHR, textStatus ) {
-            alert( "fail " + textStatus);
-				//TODO
-					//say something went wrong
-        });
-		request.success(function(){
-			alert("success");
-			//TODO
-				//clear fields
-				//show modal to say thank you
-		});
-
-    });
-
-</script>
-
 
 
 </body>
