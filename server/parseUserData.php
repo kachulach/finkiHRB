@@ -91,6 +91,8 @@ $apiKey = "stjoknh43oia1v70t744fgc6m2";
 		mysqli_query($connection,$str);
 		mysqli_close($connection);
 
+		echo "tuka";
+
 
 	}
 
