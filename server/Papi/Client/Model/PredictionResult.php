@@ -27,21 +27,25 @@ class PredictionResult
      */
     public static function fromArray(array $predictionArray)
     {
-        $prediction = new PredictionResult();
+       $prediction = new PredictionResult();
         $prediction->_uid = $predictionArray["uid"];
-        //$prediction->_inputUsed = $predictionArray["input_used"];
-        $prediction->_predictions = self::_createTraits($predictionArray["predictions"]);
+        //$prediction->_inputUsed = $predictionArray["inputUsed"];
+        $traits[] = array();
+        foreach ($predictionArray["predictions"] as $traitArray) {
+            $traits[] = Prediction::fromArray($traitArray);
+        }
+        $prediction->_predictions = $traits;//_createTraits($predictionArray["predictions"]);
         return $prediction;
     }
 
-    private function _createTraits(array $traitsArray)
-    {
-        $traits[] = array();
-        foreach ($traitsArray as $traitArray) {
-            $traits[] = Prediction::fromArray($traitArray);
-        }
-        return $traits;
-    }
+    // private function _createTraits(array $traitsArray)
+    // {
+    //     $traits[] = array();
+    //     foreach ($traitsArray as $traitArray) {
+    //         $traits[] = Prediction::fromArray($traitArray);
+    //     }
+    //     return $traits;
+    // }
 
     /**
      * @param $trait
